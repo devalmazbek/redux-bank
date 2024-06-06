@@ -1,14 +1,17 @@
-import CreateCustomer from "./components/create-customer";
-import Customer from "./components/customer";
-import AccountOperations from "./components/account-operators";
-import BalanceDisplay from "./components/balance-display";
-import { store } from "./store";
+import { useSelector } from "react-redux";
+
+import CreateCustomer from "./features/customers/create-customer";
+import Customer from "./features/customers/customer";
+import AccountOperations from "./features/accounts/account-operators";
+import BalanceDisplay from "./features/accounts/balance-display";
 
 function App() {
+  const customerName = useSelector((store) => store.customer.fullname);
+
   return (
     <div>
       <h1>🏦 The React-Redux Bank ⚛️</h1>
-      <CreateCustomer />
+      {!customerName && <CreateCustomer />}
       <Customer />
       <AccountOperations />
       <BalanceDisplay />
